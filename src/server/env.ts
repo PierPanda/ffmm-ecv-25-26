@@ -1,7 +1,6 @@
 import 'server-only'
 
-const builderApiKey = process.env.BUILDER_API_KEY;
-
 export const env = {
-  builderApiKey: builderApiKey!,
+  sanityProjectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  sanityDataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
 };

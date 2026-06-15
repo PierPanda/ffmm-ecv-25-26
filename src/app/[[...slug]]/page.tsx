@@ -1,33 +1,26 @@
-import { Content, fetchOneEntry, isPreviewing } from '@builder.io/sdk-react-nextjs';
+import { client } from '@/server/sanity';
 import { notFound } from 'next/navigation';
-import { env } from '@/server/env';
 
 interface PageProps {
   params: Promise<{ slug?: string[] }>;
-  searchParams: Promise<Record<string, string>>;
 }
 
-export default async function Page({ params, searchParams }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const resolvedSearchParams = await searchParams;
-  const urlPath = '/' + (slug?.join('/') ?? '');
+  const urlPath = slug?.join('/') ?? '';
 
-  const content = await fetchOneEntry({
-    model: 'page',
-    apiKey: env.builderApiKey,
-    userAttributes: { urlPath },
-    options: resolvedSearchParams,
-  });
+  const page = await client.fetch(
+    `*[_type == "page" && slug.current == $slug][0]`,
+    { slug: urlPath || 'home' }
+  );
 
-  if (!content && !isPreviewing()) {
+  if (!page) {
     notFound();
   }
 
   return (
-    <Content
-      content={content}
-      model="page"
-      apiKey={env.builderApiKey}
-    />
+    <div>
+      <h1>{page.title}</h1>
+    </div>
   );
 }

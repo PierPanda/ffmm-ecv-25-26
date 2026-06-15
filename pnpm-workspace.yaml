@@ -1,2 +1,4 @@
 allowBuilds:
+  esbuild: true
+  isolated-vm: true
   sharp: true
