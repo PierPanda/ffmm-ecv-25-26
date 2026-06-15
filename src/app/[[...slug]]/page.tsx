@@ -1,4 +1,4 @@
-import { Content, fetchOneEntry, isPreviewing } from '@builder.io/sdk-react';
+import { Content, fetchOneEntry, isPreviewing } from '@builder.io/sdk-react-nextjs';
 import { notFound } from 'next/navigation';
 import { env } from '@/server/env';
 
