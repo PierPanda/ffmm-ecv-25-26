@@ -1,4 +1,4 @@
-'use server '
+'server-only'
 
 const builderApiKey = process.env.BUILDER_API_KEY;
 
