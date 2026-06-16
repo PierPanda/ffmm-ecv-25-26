@@ -19,8 +19,10 @@ export const metadata: Metadata = {
 
 export default function WebsiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased`}>
-      {children}
-    </div>
+    <html lang="fr">
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased`}>
+        {children}
+      </body>
+    </html>
   );
 }
