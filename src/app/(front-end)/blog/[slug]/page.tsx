@@ -1,6 +1,8 @@
+export const revalidate = 3600
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -11,7 +13,7 @@ export async function generateStaticParams() {
   const payload = await getPayload({ config })
   const result = await payload.find({
     collection: 'articles',
-    limit: 1000,
+    pagination: false,
     select: { slug: true },
   })
   return result.docs.map((doc) => ({ slug: doc.slug }))
@@ -40,7 +42,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <main>
       {article.layout?.length ? (
-        <BlockRenderer blocks={article.layout as Parameters<typeof BlockRenderer>[0]['blocks']} />
+        <BlockRenderer blocks={article.layout as BlockList} />
       ) : null}
     </main>
   )

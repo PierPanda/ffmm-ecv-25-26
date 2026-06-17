@@ -1,6 +1,8 @@
+export const revalidate = 3600
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
@@ -9,7 +11,7 @@ export default async function HomePage() {
   return (
     <main className="flex justify-center items-center min-h-screen z-0">
       {home.layout?.length ? (
-        <BlockRenderer blocks={home.layout as Parameters<typeof BlockRenderer>[0]['blocks']} />
+        <BlockRenderer blocks={home.layout as BlockList} />
       ) : null}
     </main>
   )

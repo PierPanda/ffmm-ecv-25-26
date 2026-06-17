@@ -1,8 +1,10 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateSiteSettings } from '@/lib/revalidate'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'siteSettings',
   label: 'Paramètres du site',
+  hooks: { afterChange: [revalidateSiteSettings] },
   access: {
     read: () => true,
     update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',

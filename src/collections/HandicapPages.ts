@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { allBlocks } from '@/blocks'
+import { revalidateHandicapPage } from '@/lib/revalidate'
 
 export const HANDICAP_SLUGS = ['moteur', 'visuel', 'auditif', 'autisme', 'psychologique', 'invisible'] as const
 
@@ -11,6 +12,9 @@ export const HandicapPages: CollectionConfig = {
     create: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
     update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
     delete: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+  },
+  hooks: {
+    afterChange: [revalidateHandicapPage],
   },
   admin: {
     useAsTitle: 'title',

@@ -1,6 +1,8 @@
+export const revalidate = 3600
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 
 export default async function HandicapsPage() {
   const payload = await getPayload({ config })
@@ -9,7 +11,7 @@ export default async function HandicapsPage() {
   return (
     <main>
       {handicaps.layout?.length ? (
-        <BlockRenderer blocks={handicaps.layout as Parameters<typeof BlockRenderer>[0]['blocks']} />
+        <BlockRenderer blocks={handicaps.layout as BlockList} />
       ) : null}
     </main>
   )

@@ -1,6 +1,8 @@
+export const revalidate = 3600
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 
 export default async function FedPage() {
   const payload = await getPayload({ config })
@@ -9,7 +11,7 @@ export default async function FedPage() {
   return (
     <main>
       {fed.layout?.length ? (
-        <BlockRenderer blocks={fed.layout as Parameters<typeof BlockRenderer>[0]['blocks']} />
+        <BlockRenderer blocks={fed.layout as BlockList} />
       ) : null}
     </main>
   )

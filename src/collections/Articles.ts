@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { allBlocks } from '@/blocks'
+import { revalidateArticle } from '@/lib/revalidate'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -9,6 +10,9 @@ export const Articles: CollectionConfig = {
     create: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
     update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
     delete: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+  },
+  hooks: {
+    afterChange: [revalidateArticle],
   },
   admin: {
     useAsTitle: 'title',

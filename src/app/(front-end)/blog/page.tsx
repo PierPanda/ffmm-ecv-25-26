@@ -1,6 +1,8 @@
+export const revalidate = 3600
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer } from '@/components/BlockRenderer'
+import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 
 export default async function BlogPage() {
   const payload = await getPayload({ config })
@@ -9,7 +11,7 @@ export default async function BlogPage() {
   return (
     <main>
       {blog.layout?.length ? (
-        <BlockRenderer blocks={blog.layout as Parameters<typeof BlockRenderer>[0]['blocks']} />
+        <BlockRenderer blocks={blog.layout as BlockList} />
       ) : null}
     </main>
   )
