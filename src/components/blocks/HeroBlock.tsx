@@ -8,10 +8,52 @@ type Props = {
 
 export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
   return (
-    <section>
-      <h1>{title}</h1>
-      {subtitle && <p>{subtitle}</p>}
-      {ctaLabel && ctaHref && <a href={ctaHref}>{ctaLabel}</a>}
+    <section className="relative w-screen h-screen overflow-hidden">
+      <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
+        <defs>
+          <filter id="hero-title-noise">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.900 0.900"
+              numOctaves="2"
+              seed="8000"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="4"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
+
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="flex flex-col items-center gap-8 w-full max-w-149.25">
+          <div style={{ filter: 'url(#hero-title-noise)' }}>
+            <h1 className="font-tanker font-normal leading-none tracking-[-0.01em] text-center uppercase text-white text-[clamp(2.5rem,7vw,5.75rem)]">
+              {title}
+            </h1>
+          </div>
+
+          {ctaLabel && ctaHref && (
+            <a
+              href={ctaHref}
+              className="px-5 py-2.5 bg-amber-400 text-mauve-900 text-sm font-medium rounded-full"
+            >
+              {ctaLabel}
+            </a>
+          )}
+
+          {subtitle && (
+            <p className="text-center text-white/70 text-lg leading-snug md:absolute md:bottom-10 md:left-10 md:text-left md:max-w-100">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      </div>
     </section>
   )
 }
