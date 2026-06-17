@@ -16,9 +16,20 @@ import { ContactGlobal } from '@/globals/ContactGlobal';
 import { LegalGlobal } from '@/globals/LegalGlobal';
 import { PrivacyGlobal } from '@/globals/PrivacyGlobal';
 import { SiteSettings } from '@/globals/SiteSettings';
+import {
+  serverUrl,
+  databaseUri,
+  payloadSecret,
+  s3Bucket,
+  s3Region,
+  s3Endpoint,
+  s3AccessKeyId,
+  s3SecretAccessKey,
+  s3ForcePathStyle,
+} from '@/server/env';
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  serverURL: serverUrl,
 
   admin: {
     user: Users.slug,
@@ -43,7 +54,7 @@ export default buildConfig({
 
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI!,
+      connectionString: databaseUri,
     },
     push: true,
   }),
@@ -53,20 +64,20 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      bucket: process.env.S3_BUCKET!,
+      bucket: s3Bucket,
       config: {
-        endpoint: process.env.S3_ENDPOINT,
-        region: process.env.S3_REGION || 'us-east-1',
+        endpoint: s3Endpoint,
+        region: s3Region,
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+          accessKeyId: s3AccessKeyId,
+          secretAccessKey: s3SecretAccessKey,
         },
-        forcePathStyle: process.env.S3_FORCE_PATH_STYLE === 'true',
+        forcePathStyle: s3ForcePathStyle,
       },
     }),
   ],
 
-  secret: process.env.PAYLOAD_SECRET!,
+  secret: payloadSecret,
 
   typescript: {
     outputFile: './src/payload-types.ts',

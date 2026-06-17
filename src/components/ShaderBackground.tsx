@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { unicornSdkUrl, unicornProjectId } from '@/server/env';
 
-const SDK_URL =
-  "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.5/dist/unicornStudio.umd.js";
-const PROJECT_ID = "eFzQTZbDZCkoUAL0fhfP";
+
 const ELEMENT_ID = "unicorn-bg-scene";
 
 type UnicornScene = { destroy: () => void };
@@ -38,7 +37,7 @@ export default function ShaderBackground() {
       try {
         scene = await window.UnicornStudio.addScene({
           elementId: ELEMENT_ID,
-          projectId: PROJECT_ID,
+          projectId: unicornProjectId,
           scale: 1,
           dpi: 1.5,
           fps: 60,
@@ -46,7 +45,22 @@ export default function ShaderBackground() {
         });
 
         const forward = (e: MouseEvent) =>
-          container.dispatchEvent(new MouseEvent(e.type, e));
+          container.dispatchEvent(
+            new MouseEvent(e.type, {
+              bubbles: true,
+              cancelable: e.cancelable,
+              view: e.view,
+              clientX: e.clientX,
+              clientY: e.clientY,
+              screenX: e.screenX,
+              screenY: e.screenY,
+              movementX: e.movementX,
+              movementY: e.movementY,
+              buttons: e.buttons,
+              button: e.button,
+              relatedTarget: e.relatedTarget,
+            }),
+          );
 
         document.addEventListener("mousemove", forward);
         document.addEventListener("mouseenter", forward);
@@ -68,7 +82,7 @@ export default function ShaderBackground() {
       boot();
     } else {
       const script = document.createElement("script");
-      script.src = SDK_URL;
+      script.src = unicornSdkUrl;
       script.onload = boot;
       document.head.appendChild(script);
     }

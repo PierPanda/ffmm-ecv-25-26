@@ -1,12 +1,11 @@
-import 'server-only';
-
-export const env = {
-  databaseUri: process.env.DATABASE_URI!,
-  payloadSecret: process.env.PAYLOAD_SECRET!,
-  serverUrl: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
-  s3Bucket: process.env.S3_BUCKET!,
-  s3Region: process.env.S3_REGION || 'us-east-1',
-  s3Endpoint: process.env.S3_ENDPOINT!,
-  s3AccessKeyId: process.env.S3_ACCESS_KEY_ID!,
-  s3SecretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
-};
+export const databaseUri = process.env.DATABASE_URI!;
+export const payloadSecret = process.env.PAYLOAD_SECRET!;
+export const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+export const s3Bucket = process.env.S3_BUCKET!;
+export const s3Region = process.env.S3_REGION || 'us-east-1';
+export const s3Endpoint = process.env.S3_ENDPOINT!;
+export const s3AccessKeyId = process.env.S3_ACCESS_KEY_ID!;
+export const s3SecretAccessKey = process.env.S3_SECRET_ACCESS_KEY!;
+export const s3ForcePathStyle = process.env.S3_FORCE_PATH_STYLE === 'true';
+export const unicornSdkUrl = process.env.NEXT_PUBLIC_UNICORN_SDK_URL!;
+export const unicornProjectId = process.env.NEXT_PUBLIC_UNICORN_PROJECT_ID!;
