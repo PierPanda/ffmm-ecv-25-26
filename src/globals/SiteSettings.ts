@@ -3,7 +3,10 @@ import type { GlobalConfig } from 'payload'
 export const SiteSettings: GlobalConfig = {
   slug: 'siteSettings',
   label: 'Paramètres du site',
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+  },
   fields: [
     {
       name: 'preAuditCta',

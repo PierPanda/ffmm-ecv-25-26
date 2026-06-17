@@ -7,14 +7,31 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
+export async function generateStaticParams() {
+  const payload = await getPayload({ config })
+  const result = await payload.find({
+    collection: 'articles',
+    limit: 1000,
+    select: { slug: true },
+  })
+  return result.docs.map((doc) => ({ slug: doc.slug }))
+}
+
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
   const payload = await getPayload({ config })
 
+  const now = new Date().toISOString()
   const result = await payload.find({
     collection: 'articles',
-    where: { slug: { equals: slug } },
+    where: {
+      and: [
+        { slug: { equals: slug } },
+        { publishedAt: { less_than_equal: now } },
+      ],
+    },
     limit: 1,
+    depth: 2,
   })
 
   const article = result.docs[0]

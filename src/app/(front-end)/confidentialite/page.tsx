@@ -4,7 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 export default async function PrivacyPage() {
   const payload = await getPayload({ config })
-  const privacy = await payload.findGlobal({ slug: 'privacy' })
+  const privacy = await payload.findGlobal({ slug: 'privacy', depth: 2 })
 
   return (
     <main>

@@ -4,7 +4,12 @@ import { allBlocks } from '@/blocks'
 export const Articles: CollectionConfig = {
   slug: 'articles',
   labels: { singular: 'Article', plural: 'Articles' },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+    update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+    delete: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'publishedAt', 'updatedAt'],

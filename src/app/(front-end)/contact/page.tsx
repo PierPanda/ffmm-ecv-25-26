@@ -4,7 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 export default async function ContactPage() {
   const payload = await getPayload({ config })
-  const contact = await payload.findGlobal({ slug: 'contact' })
+  const contact = await payload.findGlobal({ slug: 'contact', depth: 2 })
 
   return (
     <main>

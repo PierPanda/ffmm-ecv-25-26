@@ -4,7 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 export default async function LegalPage() {
   const payload = await getPayload({ config })
-  const legal = await payload.findGlobal({ slug: 'legal' })
+  const legal = await payload.findGlobal({ slug: 'legal', depth: 2 })
 
   return (
     <main>

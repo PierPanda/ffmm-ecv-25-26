@@ -4,7 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
-  const home = await payload.findGlobal({ slug: 'home' })
+  const home = await payload.findGlobal({ slug: 'home', depth: 2 })
 
   return (
     <main className="flex justify-center items-center min-h-screen z-0">

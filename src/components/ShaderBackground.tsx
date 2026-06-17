@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { unicornSdkUrl, unicornProjectId } from '@/server/env';
-
+import { unicornSdkUrl, unicornProjectId } from '@/server/public-env';
 
 const ELEMENT_ID = "unicorn-bg-scene";
 
@@ -29,6 +28,7 @@ export default function ShaderBackground() {
   useEffect(() => {
     let scene: UnicornScene | undefined;
     let forwardCleanup: (() => void) | undefined;
+    let injectedScript: HTMLScriptElement | undefined;
 
     const initScene = async () => {
       const container = containerRef.current;
@@ -85,11 +85,13 @@ export default function ShaderBackground() {
       script.src = unicornSdkUrl;
       script.onload = boot;
       document.head.appendChild(script);
+      injectedScript = script;
     }
 
     return () => {
       forwardCleanup?.();
       scene?.destroy();
+      injectedScript?.remove();
     };
   }, []);
 

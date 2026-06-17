@@ -15,6 +15,7 @@ type Props = {
 
 export function TabsBlock({ tabs }: Props) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const safeIndex = Math.min(activeIndex, Math.max(0, tabs.length - 1))
 
   return (
     <section>
@@ -28,7 +29,7 @@ export function TabsBlock({ tabs }: Props) {
               id={tabId}
               role="tab"
               type="button"
-              aria-selected={i === activeIndex}
+              aria-selected={i === safeIndex}
               aria-controls={panelId}
               onClick={() => setActiveIndex(i)}
             >
@@ -38,13 +39,13 @@ export function TabsBlock({ tabs }: Props) {
         })}
       </nav>
       <div
-        id={`tabpanel-${tabs[activeIndex]?.id ?? activeIndex}`}
+        id={`tabpanel-${tabs[safeIndex]?.id ?? activeIndex}`}
         role="tabpanel"
-        aria-labelledby={`tab-${tabs[activeIndex]?.id ?? activeIndex}`}
+        aria-labelledby={`tab-${tabs[safeIndex]?.id ?? activeIndex}`}
       >
-        {tabs[activeIndex]?.content && (
+        {tabs[safeIndex]?.content && (
           <BlockRenderer
-            blocks={tabs[activeIndex].content as Array<Record<string, unknown> & { blockType: string }>}
+            blocks={tabs[safeIndex].content as Array<Record<string, unknown> & { blockType: string }>}
           />
         )}
       </div>

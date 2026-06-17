@@ -4,7 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 export default async function FedPage() {
   const payload = await getPayload({ config })
-  const fed = await payload.findGlobal({ slug: 'fed' })
+  const fed = await payload.findGlobal({ slug: 'fed', depth: 2 })
 
   return (
     <main>

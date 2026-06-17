@@ -1,12 +1,17 @@
 import type { CollectionConfig } from 'payload'
 import { allBlocks } from '@/blocks'
 
-const HANDICAP_SLUGS = ['moteur', 'visuel', 'auditif', 'autisme', 'psychologique', 'invisible'] as const
+export const HANDICAP_SLUGS = ['moteur', 'visuel', 'auditif', 'autisme', 'psychologique', 'invisible'] as const
 
 export const HandicapPages: CollectionConfig = {
   slug: 'handicap-pages',
   labels: { singular: 'Page handicap', plural: 'Pages handicap' },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+    update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+    delete: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],

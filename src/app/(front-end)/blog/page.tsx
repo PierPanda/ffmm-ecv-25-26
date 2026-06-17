@@ -4,7 +4,7 @@ import { BlockRenderer } from '@/components/BlockRenderer'
 
 export default async function BlogPage() {
   const payload = await getPayload({ config })
-  const blog = await payload.findGlobal({ slug: 'blog' })
+  const blog = await payload.findGlobal({ slug: 'blog', depth: 2 })
 
   return (
     <main>

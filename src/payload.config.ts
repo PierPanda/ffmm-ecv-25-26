@@ -16,8 +16,8 @@ import { ContactGlobal } from '@/globals/ContactGlobal';
 import { LegalGlobal } from '@/globals/LegalGlobal';
 import { PrivacyGlobal } from '@/globals/PrivacyGlobal';
 import { SiteSettings } from '@/globals/SiteSettings';
+import { serverUrl } from '@/server/public-env';
 import {
-  serverUrl,
   databaseUri,
   payloadSecret,
   s3Bucket,
@@ -56,7 +56,7 @@ export default buildConfig({
     pool: {
       connectionString: databaseUri,
     },
-    push: true,
+    push: process.env.NODE_ENV !== 'production',
   }),
 
   plugins: [

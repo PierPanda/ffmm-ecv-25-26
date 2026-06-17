@@ -2,12 +2,12 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { BlockRenderer } from '@/components/BlockRenderer'
 import { notFound } from 'next/navigation'
+import { HANDICAP_SLUGS } from '@/collections/HandicapPages'
 
-const VALID_SLUGS = ['moteur', 'visuel', 'auditif', 'autisme', 'psychologique', 'invisible'] as const
-type HandicapSlug = typeof VALID_SLUGS[number]
+type HandicapSlug = typeof HANDICAP_SLUGS[number]
 
 export function generateStaticParams() {
-  return VALID_SLUGS.map((slug) => ({ slug }))
+  return HANDICAP_SLUGS.map((slug) => ({ slug }))
 }
 
 type Props = {
@@ -17,13 +17,14 @@ type Props = {
 export default async function HandicapDetailPage({ params }: Props) {
   const { slug } = await params
 
-  if (!VALID_SLUGS.includes(slug as HandicapSlug)) notFound()
+  if (!HANDICAP_SLUGS.includes(slug as HandicapSlug)) notFound()
 
   const payload = await getPayload({ config })
   const result = await payload.find({
     collection: 'handicap-pages',
     where: { slug: { equals: slug } },
     limit: 1,
+    depth: 2,
   })
 
   const page = result.docs[0]
