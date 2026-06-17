@@ -19,18 +19,29 @@ export function TabsBlock({ tabs }: Props) {
   return (
     <section>
       <nav role="tablist">
-        {tabs.map((tab, i) => (
-          <button
-            key={tab.id ?? i}
-            role="tab"
-            aria-selected={i === activeIndex}
-            onClick={() => setActiveIndex(i)}
-          >
-            {tab.label}
-          </button>
-        ))}
+        {tabs.map((tab, i) => {
+          const panelId = `tabpanel-${tab.id ?? i}`
+          const tabId = `tab-${tab.id ?? i}`
+          return (
+            <button
+              key={tab.id ?? i}
+              id={tabId}
+              role="tab"
+              type="button"
+              aria-selected={i === activeIndex}
+              aria-controls={panelId}
+              onClick={() => setActiveIndex(i)}
+            >
+              {tab.label}
+            </button>
+          )
+        })}
       </nav>
-      <div role="tabpanel">
+      <div
+        id={`tabpanel-${tabs[activeIndex]?.id ?? activeIndex}`}
+        role="tabpanel"
+        aria-labelledby={`tab-${tabs[activeIndex]?.id ?? activeIndex}`}
+      >
         {tabs[activeIndex]?.content && (
           <BlockRenderer
             blocks={tabs[activeIndex].content as Array<Record<string, unknown> & { blockType: string }>}
