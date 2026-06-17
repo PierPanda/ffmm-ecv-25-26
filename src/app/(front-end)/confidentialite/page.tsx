@@ -4,14 +4,14 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 
-export default async function HomePage() {
+export default async function PrivacyPage() {
   const payload = await getPayload({ config })
-  const home = await payload.findGlobal({ slug: 'home', depth: 2 })
+  const privacy = await payload.findGlobal({ slug: 'privacy', depth: 2 })
 
   return (
-    <main className="flex justify-center items-center min-h-screen z-0">
-      {home.layout?.length ? (
-        <BlockRenderer blocks={home.layout as BlockList} />
+    <main>
+      {privacy.layout?.length ? (
+        <BlockRenderer blocks={privacy.layout as BlockList} />
       ) : null}
     </main>
   )

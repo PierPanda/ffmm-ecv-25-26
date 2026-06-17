@@ -4,14 +4,14 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
 
-export default async function HomePage() {
+export default async function GuidePage() {
   const payload = await getPayload({ config })
-  const home = await payload.findGlobal({ slug: 'home', depth: 2 })
+  const guide = await payload.findGlobal({ slug: 'guide', depth: 2 })
 
   return (
-    <main className="flex justify-center items-center min-h-screen z-0">
-      {home.layout?.length ? (
-        <BlockRenderer blocks={home.layout as BlockList} />
+    <main>
+      {guide.layout?.length ? (
+        <BlockRenderer blocks={guide.layout as BlockList} />
       ) : null}
     </main>
   )

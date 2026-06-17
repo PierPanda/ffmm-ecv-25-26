@@ -329,8 +329,7 @@ export const MaCollection: CollectionConfig = {
 import { MaCollection } from '@/collections/MaCollection';
 
 export default buildConfig({
-  collections: [Users, Media, MaCollection], // ← ajouter ici
-  // ...
+  collections: [Users, Media, MaCollection], 
 });
 ```
 
