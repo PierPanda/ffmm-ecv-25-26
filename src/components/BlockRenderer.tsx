@@ -9,6 +9,7 @@ import { FAQBlock } from './blocks/FAQBlock'
 import { RichTextBlock } from './blocks/RichTextBlock'
 import { RelatedArticlesBlock } from './blocks/RelatedArticlesBlock'
 import { ContactFormBlock } from './blocks/ContactFormBlock'
+import { HomePageFederationSectionBlock } from './blocks/HomePageFederationSectionBlock'
 
 type BlockData = Record<string, unknown> & { blockType: string; id?: string }
 
@@ -26,6 +27,7 @@ const blockMap: Record<string, React.ComponentType<any>> = {
   richTextBlock: RichTextBlock,
   relatedArticlesBlock: RelatedArticlesBlock,
   contactFormBlock: ContactFormBlock,
+  homePageFederationSectionBlock: HomePageFederationSectionBlock,
 }
 
 type Props = {

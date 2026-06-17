@@ -10,6 +10,7 @@ import { FAQBlock } from './FAQBlock'
 import { RichTextBlock } from './RichTextBlock'
 import { RelatedArticlesBlock } from './RelatedArticlesBlock'
 import { ContactFormBlock } from './ContactFormBlock'
+import { HomePageFederationSectionBlock } from './HomePageFederationSectionBlock'
 
 export {
   HeroBlock,
@@ -23,6 +24,7 @@ export {
   RichTextBlock,
   RelatedArticlesBlock,
   ContactFormBlock,
+  HomePageFederationSectionBlock,
 }
 
 export const allBlocks: Block[] = [
@@ -37,4 +39,5 @@ export const allBlocks: Block[] = [
   RichTextBlock,
   RelatedArticlesBlock,
   ContactFormBlock,
+  HomePageFederationSectionBlock,
 ]
