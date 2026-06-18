@@ -12,7 +12,7 @@ const atkinson = Atkinson_Hyperlegible({
 
 const tanker = localFont({
   src: '../../../public/Tanker-Regular.woff2',
-  variable: '--font-tanker',
+  variable: '--font-tanker-face',
   weight: '400',
   display: 'swap',
 });

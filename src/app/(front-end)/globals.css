@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-body: var(--font-atkinson);
-  --font-tanker: var(--font-tanker);
+  --font-tanker: var(--font-tanker-face);
 }
 
 @theme {

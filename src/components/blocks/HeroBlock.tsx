@@ -1,3 +1,7 @@
+'use client'
+
+import { useId } from 'react'
+
 type Props = {
   title: string
   subtitle?: string | null
@@ -7,11 +11,12 @@ type Props = {
 }
 
 export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
+  const filterId = useId()
   return (
-    <section className="relative w-screen h-screen overflow-hidden">
+    <section className="relative w-full h-screen overflow-hidden">
       <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
         <defs>
-          <filter id="hero-title-noise">
+          <filter id={filterId}>
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.900 0.900"
@@ -31,8 +36,8 @@ export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
       </svg>
 
       <div className="absolute inset-0 flex items-center justify-center px-6">
-        <div className="flex flex-col items-center gap-8 w-full max-w-149.25">
-          <div style={{ filter: 'url(#hero-title-noise)' }}>
+        <div className="flex flex-col items-center gap-8 w-full max-w-[597px]">
+          <div style={{ filter: `url(#${filterId})` }}>
             <h1 className="font-tanker font-normal leading-none tracking-[-0.01em] text-center uppercase text-white text-[clamp(2.5rem,7vw,5.75rem)]">
               {title}
             </h1>
@@ -48,7 +53,7 @@ export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
           )}
 
           {subtitle && (
-            <p className="text-center text-white/70 text-lg leading-snug md:absolute md:bottom-10 md:left-10 md:text-left md:max-w-100">
+            <p className="text-center text-white/70 text-lg leading-snug md:absolute md:bottom-10 md:left-10 md:text-left md:max-w-[597px]">
               {subtitle}
             </p>
           )}
