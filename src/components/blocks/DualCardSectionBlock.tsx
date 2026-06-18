@@ -55,12 +55,9 @@ export function DualCardSectionBlock({
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-mauve-900 bg-cover bg-center px-6 py-6"
       style={bgUrl ? { backgroundImage: `url(${bgUrl})` } : undefined}
     >
-      {/* Voile violet 50% par-dessus l'image de fond (#CB9CF2 / purple-400) */}
       {bgUrl && <div aria-hidden="true" className="absolute inset-0 bg-purple-400/50" />}
 
-      {/* Contenu centré : 1 colonne sur mobile, 2 colonnes dès md, gap 24px */}
       <div className="relative z-10 grid w-full max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Section 1 (carte gauche) : logo OU titre + description */}
         <div className="flex aspect-[6/7] flex-col justify-between bg-sand-100 p-6 text-mauve-900">
           {logoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Atkinson_Hyperlegible } from 'next/font/google';
 import localFont from 'next/font/local';
 import ShaderBackground from '@/components/ShaderBackground';
+import { Navbar } from '@/components/Navbar';
 import './globals.css';
 
 const atkinson = Atkinson_Hyperlegible({
@@ -28,6 +29,7 @@ export default function WebsiteLayout({ children }: { children: React.ReactNode 
       <body className={`${atkinson.variable} ${tanker.variable} min-h-full flex flex-col antialiased`}>
         <ShaderBackground />
         <div className="relative z-0 flex flex-col flex-1 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto [&_input]:pointer-events-auto [&_textarea]:pointer-events-auto [&_select]:pointer-events-auto">
+          <Navbar />
           {children}
         </div>
       </body>
