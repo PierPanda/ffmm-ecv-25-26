@@ -11,6 +11,7 @@ import { RichTextBlock } from './RichTextBlock'
 import { RelatedArticlesBlock } from './RelatedArticlesBlock'
 import { ContactFormBlock } from './ContactFormBlock'
 import { DualCardSectionBlock } from './DualCardSectionBlock'
+import { PacksBlock } from './PacksBlock'
 
 export {
   HeroBlock,
@@ -25,6 +26,7 @@ export {
   RelatedArticlesBlock,
   ContactFormBlock,
   DualCardSectionBlock,
+  PacksBlock,
 }
 
 export const allBlocks: Block[] = [
@@ -40,4 +42,5 @@ export const allBlocks: Block[] = [
   RelatedArticlesBlock,
   ContactFormBlock,
   DualCardSectionBlock,
+  PacksBlock,
 ]
