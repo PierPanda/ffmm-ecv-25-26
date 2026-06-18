@@ -1,8 +1,8 @@
 import type { Block } from 'payload'
 
-export const HomePageFederationSectionBlock: Block = {
-  slug: 'homePageFederationSectionBlock',
-  labels: { singular: 'Section Fédération (accueil)', plural: 'Sections Fédération (accueil)' },
+export const DualCardSectionBlock: Block = {
+  slug: 'dualCardSectionBlock',
+  labels: { singular: 'Section deux cartes', plural: 'Sections deux cartes' },
   fields: [
     // Fond
     {
@@ -12,12 +12,19 @@ export const HomePageFederationSectionBlock: Block = {
       label: 'Image de fond',
     },
 
-    // Section 1 (carte gauche) : logo + description
+    // Section 1 (carte gauche) : logo OU titre, + description
     {
       name: 'logo',
       type: 'upload',
       relationTo: 'media',
       label: 'Section 1 · Logo',
+      admin: { description: 'Affiché en haut de la carte gauche. Laisser vide pour utiliser un titre à la place.' },
+    },
+    {
+      name: 'leftTitle',
+      type: 'textarea',
+      label: 'Section 1 · Titre',
+      admin: { description: 'Utilisé uniquement si aucun logo n’est défini. Les sauts de ligne sont respectés.' },
     },
     {
       name: 'description',

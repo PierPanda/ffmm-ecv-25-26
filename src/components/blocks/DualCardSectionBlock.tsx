@@ -3,6 +3,7 @@ type Media = { url?: string | null; alt?: string | null } | number | null
 type Props = {
   backgroundImage?: Media
   logo?: Media
+  leftTitle?: string | null
   description?: string | null
   title: string
   ctaLabel?: string | null
@@ -17,9 +18,10 @@ function mediaAlt(media: Media | undefined): string {
   return typeof media === 'object' && media?.alt ? media.alt : ''
 }
 
-export function HomePageFederationSectionBlock({
+export function DualCardSectionBlock({
   backgroundImage,
   logo,
+  leftTitle,
   description,
   title,
   ctaLabel,
@@ -58,14 +60,20 @@ export function HomePageFederationSectionBlock({
 
       {/* Contenu centré : 1 colonne sur mobile, 2 colonnes dès md, gap 24px */}
       <div className="relative z-10 grid w-full max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Section 1 (carte gauche) : logo + description */}
+        {/* Section 1 (carte gauche) : logo OU titre + description */}
         <div className="flex aspect-[6/7] flex-col justify-between bg-sand-100 p-6 text-mauve-900">
-          {logoUrl && (
+          {logoUrl ? (
             <img
               src={logoUrl}
               alt={mediaAlt(logo)}
               className="h-auto w-full object-contain"
             />
+          ) : (
+            leftTitle && (
+              <span className="whitespace-pre-line font-[family-name:var(--font-tanker)] text-[clamp(1.5rem,2.4vw,2.25rem)] font-normal uppercase leading-[0.95] text-mauve-900">
+                {leftTitle}
+              </span>
+            )
           )}
           {description && (
             <div className="flex w-full flex-col gap-4 font-[family-name:var(--font-atkinson)] text-lg leading-[1.1] tracking-[-0.02em]">
