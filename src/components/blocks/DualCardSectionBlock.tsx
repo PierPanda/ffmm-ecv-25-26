@@ -63,6 +63,7 @@ export function DualCardSectionBlock({
         {/* Section 1 (carte gauche) : logo OU titre + description */}
         <div className="flex aspect-[6/7] flex-col justify-between bg-sand-100 p-6 text-mauve-900">
           {logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={logoUrl}
               alt={mediaAlt(logo)}
