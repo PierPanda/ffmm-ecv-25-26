@@ -17,7 +17,20 @@ export const StatsBlock: Block = {
           type: 'group',
           fields: [
             { name: 'linkLabel', type: 'text', label: 'Texte du lien' },
-            { name: 'linkHref', type: 'text', label: 'URL de la source' },
+            {
+              name: 'linkHref',
+              type: 'text',
+              label: 'URL de la source',
+              validate: (value: string | null | undefined) => {
+                if (!value) return true
+                try {
+                  new URL(value)
+                  return true
+                } catch {
+                  return 'Veuillez entrer une URL valide (ex : https://example.com)'
+                }
+              },
+            },
             { name: 'year', type: 'text', label: 'Année' },
           ],
         },

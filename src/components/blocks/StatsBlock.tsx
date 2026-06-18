@@ -102,7 +102,7 @@ export function StatsBlock({ title, items }: Props) {
               {item.source && (item.source.linkLabel || item.source.year) && (
                 <p className="text-white/40 text-sm">
                   {item.source.linkLabel && item.source.linkHref ? (
-                    <>
+                    <div>
                       Source :{' '}
                       <a
                         href={item.source.linkHref}
@@ -112,12 +112,12 @@ export function StatsBlock({ title, items }: Props) {
                       >
                         {item.source.linkLabel}
                       </a>
-                    </>
+                    </div>
                   ) : item.source.linkLabel ? (
-                    <>Source : {item.source.linkLabel}</>
+                    <div>Source : {item.source.linkLabel}</div>
                   ) : null}
                   {item.source.year && (
-                    <> — Année : {item.source.year}</>
+                    <div> — Année : {item.source.year}</div>
                   )}
                 </p>
               )}
