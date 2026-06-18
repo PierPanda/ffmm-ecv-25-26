@@ -1,6 +1,4 @@
-'use client'
-
-import { useId } from 'react'
+const FILTER_ID = 'hero-noise-filter'
 
 type Props = {
   title: string
@@ -11,12 +9,11 @@ type Props = {
 }
 
 export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
-  const filterId = useId()
   return (
     <section className="relative w-full h-screen overflow-hidden">
       <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
         <defs>
-          <filter id={filterId}>
+          <filter id={FILTER_ID}>
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.900 0.900"
@@ -37,7 +34,7 @@ export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
 
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="flex flex-col items-center gap-8 w-full max-w-[597px]">
-          <div style={{ filter: `url(#${filterId})` }}>
+          <div style={{ filter: `url(#${FILTER_ID})` }}>
             <h1 className="font-tanker font-normal leading-none tracking-[-0.01em] text-center uppercase text-white text-[clamp(2.5rem,7vw,5.75rem)]">
               {title}
             </h1>

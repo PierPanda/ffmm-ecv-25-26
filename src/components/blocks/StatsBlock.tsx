@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
 
 type StatItem = {
   id?: string | null
@@ -27,6 +26,8 @@ export function StatsBlock({ title, items }: Props) {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
     const section = sectionRef.current
     const els = itemRefs.current.filter(Boolean) as HTMLDivElement[]
     if (!section || els.length === 0) return
@@ -49,7 +50,7 @@ export function StatsBlock({ title, items }: Props) {
       }
     })
 
-    ScrollTrigger.create({
+    const st = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
       end: `+=${items.length * 300}vh`,
@@ -64,7 +65,8 @@ export function StatsBlock({ title, items }: Props) {
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      st.kill()
+      tl.kill()
     }
   }, [items])
 

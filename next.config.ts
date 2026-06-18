@@ -4,10 +4,9 @@ import { withPayload } from '@payloadcms/next/withPayload';
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
+      ...(process.env.NODE_ENV === 'development'
+        ? [{ protocol: 'http' as const, hostname: 'localhost', port: '9000' }]
+        : []),
     ],
   },
 };
