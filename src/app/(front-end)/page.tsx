@@ -9,7 +9,7 @@ export default async function HomePage() {
   const home = await payload.findGlobal({ slug: 'home', depth: 2 })
 
   return (
-    <main className="flex justify-center items-center min-h-screen z-0">
+    <main>
       {home.layout?.length ? (
         <BlockRenderer blocks={home.layout as BlockList} />
       ) : null}

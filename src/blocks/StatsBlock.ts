@@ -11,7 +11,17 @@ export const StatsBlock: Block = {
       minRows: 1,
       fields: [
         { name: 'value', type: 'text', required: true },
-        { name: 'label', type: 'text', required: true },
+        { name: 'label', type: 'textarea', required: true },
+        {
+          name: 'source',
+          type: 'group',
+          fields: [
+            { name: 'linkLabel', type: 'text', label: 'Texte du lien' },
+            { name: 'linkHref', type: 'text', label: 'URL de la source' },
+            { name: 'year', type: 'text', label: 'Année' },
+          ],
+        },
+        { name: 'icon', type: 'upload', relationTo: 'media' },
       ],
     },
   ],
