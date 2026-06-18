@@ -56,6 +56,7 @@ export default buildConfig({
     pool: {
       connectionString: databaseUri,
     },
+    push: process.env.PAYLOAD_PUSH === 'true',
   }),
 
   plugins: [
