@@ -83,7 +83,7 @@ export function StatsBlock({ title, items }: Props) {
             <div
               key={item.id ?? i}
               ref={el => { itemRefs.current[i] = el }}
-              className="absolute flex flex-col items-center gap-6 w-full max-w-150 px-6 text-center"
+              className="absolute flex flex-col items-center gap-6 w-full max-w-[600px] px-6 text-center"
             >
               {title && i === 0 && (
                 <h2 className="font-tanker text-white uppercase text-2xl tracking-[-0.01em]">
@@ -95,7 +95,7 @@ export function StatsBlock({ title, items }: Props) {
                 {item.value}
               </span>
 
-              <p className="text-white text-lg leading-snug max-w-120">
+              <p className="text-white text-lg leading-snug max-w-[480px]">
                 {item.label}
               </p>
 
