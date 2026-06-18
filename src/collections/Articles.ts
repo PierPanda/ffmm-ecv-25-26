@@ -1,5 +1,4 @@
 import type { CollectionConfig, CollectionBeforeChangeHook } from 'payload'
-import { allBlocks } from '@/blocks'
 import { revalidateArticle } from '@/lib/revalidate'
 
 const generateSlug: CollectionBeforeChangeHook = ({ data, operation }) => {
@@ -37,11 +36,8 @@ export const Articles: CollectionConfig = {
     { name: 'slug', type: 'text', unique: true, index: true, admin: { hidden: true } },
     { name: 'tag', type: 'text', label: 'Tag' },
     { name: 'publishedAt', type: 'date', label: 'Date de publication' },
-    {
-      name: 'layout',
-      label: 'Contenu',
-      type: 'blocks',
-      blocks: allBlocks,
-    },
+    { name: 'coverImage', type: 'upload', relationTo: 'media', label: 'Image hero' },
+    { name: 'chapo', type: 'textarea', label: 'Chapô' },
+    { name: 'content', type: 'richText', label: 'Contenu' },
   ],
 }
