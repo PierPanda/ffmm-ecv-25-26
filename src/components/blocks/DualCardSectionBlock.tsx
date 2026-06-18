@@ -44,7 +44,7 @@ export function DualCardSectionBlock({
           />
         </svg>
       </span>
-      <span className="whitespace-pre-line font-[family-name:var(--font-tanker)] text-[clamp(2.25rem,3.8vw,3.625rem)] font-normal uppercase leading-[0.95] text-purple-400">
+      <span className="whitespace-pre-line font-tanker text-[clamp(2.25rem,3.8vw,3.625rem)] font-normal uppercase leading-[0.95] text-purple-400">
         {title}
       </span>
     </>
@@ -70,13 +70,13 @@ export function DualCardSectionBlock({
             />
           ) : (
             leftTitle && (
-              <span className="whitespace-pre-line font-[family-name:var(--font-tanker)] text-[clamp(1.5rem,2.4vw,2.25rem)] font-normal uppercase leading-[0.95] text-mauve-900">
+              <span className="whitespace-pre-line font-tanker text-[clamp(1.5rem,2.4vw,2.25rem)] font-normal uppercase leading-[0.95] text-mauve-900">
                 {leftTitle}
               </span>
             )
           )}
           {description && (
-            <div className="flex w-full flex-col gap-4 font-[family-name:var(--font-atkinson)] text-lg leading-[1.1] tracking-[-0.02em]">
+            <div className="flex w-full flex-col gap-4 font-body text-lg leading-[1.1] tracking-[-0.02em]">
               {description
                 .split('\n')
                 .filter((line) => line.trim() !== '')
