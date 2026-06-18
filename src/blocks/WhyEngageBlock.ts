@@ -5,6 +5,7 @@ export const WhyEngageBlock: Block = {
   labels: { singular: 'Pourquoi s\'engager', plural: 'Pourquoi s\'engager' },
   fields: [
     { name: 'backgroundImage', type: 'upload', relationTo: 'media', label: 'Image de fond' },
+    { name: 'overlayImage', type: 'upload', relationTo: 'media', label: 'Image superposée (PNG sans fond)' },
     { name: 'title', type: 'text', required: true },
     {
       name: 'items',
