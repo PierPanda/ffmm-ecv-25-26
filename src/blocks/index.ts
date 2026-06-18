@@ -12,6 +12,7 @@ import { RelatedArticlesBlock } from './RelatedArticlesBlock'
 import { ContactFormBlock } from './ContactFormBlock'
 import { DualCardSectionBlock } from './DualCardSectionBlock'
 import { PacksBlock } from './PacksBlock'
+import { SolutionsBlock } from './SolutionsBlock'
 
 export {
   HeroBlock,
@@ -27,6 +28,7 @@ export {
   ContactFormBlock,
   DualCardSectionBlock,
   PacksBlock,
+  SolutionsBlock,
 }
 
 export const allBlocks: Block[] = [
@@ -43,4 +45,5 @@ export const allBlocks: Block[] = [
   ContactFormBlock,
   DualCardSectionBlock,
   PacksBlock,
+  SolutionsBlock,
 ]

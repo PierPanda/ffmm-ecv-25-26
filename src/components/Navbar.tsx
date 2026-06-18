@@ -49,7 +49,7 @@ export function Navbar() {
             <li key={link.href} className="relative group">
               <Link
                 href={link.href}
-                className="flex items-center gap-1.5 text-purple-400 uppercase text-xs font-bold tracking-widest"
+                className="flex items-center gap-1.5 text-purple-400 uppercase text-sm font-bold tracking-widest"
               >
                 {link.label}
                 {link.subLinks.length > 0 && <ChevronDown />}
@@ -79,7 +79,7 @@ export function Navbar() {
           <span className="text-purple-400 text-lg leading-none select-none" aria-hidden>|</span>
           <Link
             href={CTA.href}
-            className="border-2 border-purple-400 rounded-full px-5 py-2 text-purple-400 uppercase text-xs font-bold tracking-widest whitespace-nowrap"
+            className="border-4 border-purple-400 rounded-full px-5 py-2 text-purple-400 uppercase text-xs font-bold tracking-widest whitespace-nowrap"
           >
             {CTA.label}
           </Link>
