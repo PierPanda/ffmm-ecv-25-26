@@ -1,6 +1,19 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, CollectionBeforeChangeHook } from 'payload'
 import { allBlocks } from '@/blocks'
 import { revalidateArticle } from '@/lib/revalidate'
+
+const generateSlug: CollectionBeforeChangeHook = ({ data, operation }) => {
+  if (operation === 'create' && data.title) {
+    data.slug = (data.title as string)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+  }
+  return data
+}
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -12,21 +25,21 @@ export const Articles: CollectionConfig = {
     delete: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
   },
   hooks: {
+    beforeChange: [generateSlug],
     afterChange: [revalidateArticle],
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'publishedAt', 'updatedAt'],
+    defaultColumns: ['title', 'tag', 'publishedAt', 'updatedAt'],
   },
   fields: [
-    { name: 'title', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true, index: true },
-    { name: 'excerpt', type: 'textarea' },
-    { name: 'coverImage', type: 'upload', relationTo: 'media' },
-    { name: 'category', type: 'text' },
-    { name: 'publishedAt', type: 'date' },
+    { name: 'title', type: 'text', required: true, label: 'Titre' },
+    { name: 'slug', type: 'text', unique: true, index: true, admin: { hidden: true } },
+    { name: 'tag', type: 'text', label: 'Tag' },
+    { name: 'publishedAt', type: 'date', label: 'Date de publication' },
     {
       name: 'layout',
+      label: 'Contenu',
       type: 'blocks',
       blocks: allBlocks,
     },
