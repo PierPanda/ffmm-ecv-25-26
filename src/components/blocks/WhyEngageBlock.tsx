@@ -1,6 +1,10 @@
 'use client'
 
-import { useId } from 'react'
+import { useId, useRef, useEffect } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type Item = {
   id?: string | null
@@ -13,20 +17,48 @@ type Props = {
   items: Item[]
 }
 
-const MARQUEE_ITEMS = Array.from({ length: 16 })
-
 export function WhyEngageBlock({ title, items }: Props) {
   const filterId = useId()
+  const sectionRef = useRef<HTMLElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    const overlay = overlayRef.current
+    if (!section || !overlay) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        overlay,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 20%',
+            end: 'top top',
+            scrub: true,
+          },
+        },
+      )
+    }, section)
+
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section className="relative w-full overflow-hidden bg-mauve-900 flex items-center justify-center px-4 sm:px-0 h-dvh">
+    <section
+      ref={sectionRef}
+      className="relative w-screen overflow-hidden flex items-center justify-center px-4 sm:px-0 h-dvh"
+    >
       <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
         <defs>
           <filter id={filterId}>
             <feTurbulence
               type="fractalNoise"
-              baseFrequency="0.900 0.900"
-              numOctaves="2"
+              baseFrequency="0.990 0.990"
+              numOctaves="4"
               seed="8000"
               result="noise"
             />
@@ -41,24 +73,10 @@ export function WhyEngageBlock({ title, items }: Props) {
         </defs>
       </svg>
 
-      {/* Marquee band */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-0 overflow-hidden pointer-events-none">
-        <div className="flex items-center animate-marquee-scroll">
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex shrink-0 items-center">
-              {MARQUEE_ITEMS.map((_, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={i}
-                  src="/icons/marquee.png"
-                  alt="cross shadder"
-                  aria-hidden
-                  className="h-screen w-screen shrink-0 object-contain"
-                />
-              ))}
-            </div>
-          ))}
-        </div>
+      {/* Overlay mauve-900 animé au scroll */}
+      <div ref={overlayRef} className="absolute inset-0 z-0">
+        <div className="absolute inset-0 backdrop-blur-2xl" />
+        <div className="absolute inset-0 bg-mauve-900" />
       </div>
 
       {/* Content card */}
