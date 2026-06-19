@@ -6,7 +6,7 @@ const linkClass = 'text-white/60 hover:text-purple-400 transition-colors'
 
 export function FooterSocialIcons() {
   return (
-    <div className="flex items-center gap-5 mt-6">
+    <div className="flex items-center gap-5 mt-6 justify-end">
       <a
         href="https://www.instagram.com/federationmusiquesmetalliques/"
         target="_blank"

@@ -27,11 +27,11 @@ export const metadata: Metadata = {
 export default function WebsiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body className={`${atkinson.variable} ${tanker.variable} min-h-full flex flex-col antialiased`}>
+      <body className={`${atkinson.variable} ${tanker.variable} min-h-dvh flex flex-col antialiased`}>
         <ShaderBackground />
         <div className="relative z-0 flex flex-col flex-1 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto [&_input]:pointer-events-auto [&_textarea]:pointer-events-auto [&_select]:pointer-events-auto">
           <Navbar />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer />
         </div>
       </body>

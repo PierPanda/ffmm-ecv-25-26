@@ -31,7 +31,7 @@ export async function Footer() {
   } | null
 
   return (
-    <footer className="relative w-full overflow-hidden bg-mauve-900">
+    <footer className="relative bottom-0 w-full overflow-hidden bg-mauve-900">
       <div className="absolute inset-0 z-0">
         <ShaderFooter />
       </div>
@@ -39,7 +39,6 @@ export async function Footer() {
       <div className="relative z-10 w-full px-8 md:px-16 py-16">
       <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
 
-        {/* Col 1 — Navigation */}
         <div>
           <p className={labelClass}>Navigation</p>
           <ul className="flex flex-col gap-2">
@@ -51,7 +50,6 @@ export async function Footer() {
           </ul>
         </div>
 
-        {/* Col 2 — Les contenus + Réseaux sociaux */}
         <div className="flex flex-col gap-10">
           <div>
             <p className={labelClass}>Les contenus</p>
@@ -80,8 +78,7 @@ export async function Footer() {
           )}
         </div>
 
-        {/* Col 3 — Nos coordonnées + Copyright + Liens légaux */}
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 text-right">
           <div>
             <p className={labelClass}>Nos coordonnées</p>
             <ul className="flex flex-col gap-2">
