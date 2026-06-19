@@ -14,6 +14,7 @@ import { DualCardSectionBlock } from './DualCardSectionBlock'
 import { PacksBlock } from './PacksBlock'
 import { SolutionsBlock } from './SolutionsBlock'
 import { ArticlesSliderBlock } from './ArticlesSliderBlock'
+import { SixCardsBlock } from './SixCardsBlock'
 
 export {
   HeroBlock,
@@ -31,6 +32,7 @@ export {
   PacksBlock,
   SolutionsBlock,
   ArticlesSliderBlock,
+  SixCardsBlock,
 }
 
 export const allBlocks: Block[] = [
@@ -49,4 +51,5 @@ export const allBlocks: Block[] = [
   PacksBlock,
   SolutionsBlock,
   ArticlesSliderBlock,
+  SixCardsBlock,
 ]

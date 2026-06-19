@@ -12,6 +12,7 @@ import { ContactFormBlock } from './blocks/ContactFormBlock'
 import { DualCardSectionBlock } from './blocks/DualCardSectionBlock'
 import { PacksBlock } from './blocks/PacksBlock'
 import { SolutionsBlock } from './blocks/SolutionsBlock'
+import { SixCardsBlock } from './blocks/SixCardsBlock'
 
 type BlockData = Record<string, unknown> & { blockType: string; id?: string }
 
@@ -33,6 +34,7 @@ const blockMap: Record<string, React.ComponentType<any>> = {
   dualCardSectionBlock: DualCardSectionBlock,
   packsBlock: PacksBlock,
   solutionsBlock: SolutionsBlock,
+  sixCardsBlock: SixCardsBlock,
 }
 
 type Props = {
