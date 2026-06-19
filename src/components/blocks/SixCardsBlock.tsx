@@ -34,20 +34,20 @@ function CardInner({ card }: { card: Card }) {
   const picUrl = mediaUrl(card.pictogram)
 
   return (
-    <div className="group relative flex flex-col items-center justify-center gap-4 bg-purple-400 p-6 h-full min-h-[240px] pb-16 text-center">
+    <div className="group relative flex flex-col gap-4 bg-purple-400 p-6 h-full min-h-[280px] pb-16">
       {picUrl && (
-        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-mauve-900 shrink-0">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-mauve-900 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={picUrl} alt="" aria-hidden className="h-5 w-5 object-contain" />
         </div>
       )}
 
-      <h3 className="font-tanker text-mauve-900 uppercase leading-tight text-xl sm:text-2xl">
+      <h3 className="font-tanker text-mauve-900 uppercase leading-tight text-2xl md:text-3xl">
         {card.title}
       </h3>
 
       {card.text && (
-        <p className="text-mauve-900/75 text-sm leading-relaxed">{card.text}</p>
+        <p className="text-mauve-900/70 text-sm leading-relaxed">{card.text}</p>
       )}
 
       <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-mauve-900 text-purple-400 group-hover:scale-110 transition-transform">
@@ -71,20 +71,22 @@ export function SixCardsBlock({ backgroundImage, cards = [] }: Props) {
           className="absolute inset-0 w-full h-full object-cover"
         />
       )}
-      <div className="absolute inset-0 bg-mauve-900/60" />
+      <div className="absolute inset-0 bg-mauve-900/55" />
 
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-mauve-900/40">
-        {cards.map((card, i) =>
-          card.ctaHref ? (
-            <Link key={card.id ?? i} href={card.ctaHref} className="block">
-              <CardInner card={card} />
-            </Link>
-          ) : (
-            <div key={card.id ?? i}>
-              <CardInner card={card} />
-            </div>
-          )
-        )}
+      <div className="relative z-10 p-3 md:p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+          {cards.map((card, i) =>
+            card.ctaHref ? (
+              <Link key={card.id ?? i} href={card.ctaHref} className="block">
+                <CardInner card={card} />
+              </Link>
+            ) : (
+              <div key={card.id ?? i}>
+                <CardInner card={card} />
+              </div>
+            )
+          )}
+        </div>
       </div>
     </section>
   )
