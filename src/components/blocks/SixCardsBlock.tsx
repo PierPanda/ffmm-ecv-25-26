@@ -34,7 +34,7 @@ function CardInner({ card }: { card: Card }) {
   const picUrl = mediaUrl(card.pictogram)
 
   return (
-    <div className="group relative flex flex-col gap-4 bg-purple-400 p-6 h-full min-h-[280px] pb-16">
+    <div className="group relative flex flex-col justify-end gap-3 bg-purple-400 p-4 sm:p-5 lg:p-6 h-full min-h-[400px] sm:min-h-[420px] lg:min-h-[520px] pb-16">
       {picUrl && (
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-mauve-900 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -42,12 +42,12 @@ function CardInner({ card }: { card: Card }) {
         </div>
       )}
 
-      <h3 className="font-tanker text-mauve-900 uppercase leading-tight text-2xl md:text-3xl">
+      <h3 className="font-tanker text-mauve-900 uppercase leading-tight text-2xl lg:text-4xl">
         {card.title}
       </h3>
 
       {card.text && (
-        <p className="text-mauve-900/70 text-sm leading-relaxed">{card.text}</p>
+        <p className="text-mauve-900/70 text-sm lg:text-base leading-relaxed">{card.text}</p>
       )}
 
       <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-mauve-900 text-purple-400 group-hover:scale-110 transition-transform">

@@ -5,20 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 const FADE_DURATION = 600 // ms
 
 export function Loader() {
-  const [phase, setPhase] = useState<'visible' | 'fading' | 'done'>(() => {
-    if (typeof window !== 'undefined') {
-      if (sessionStorage.getItem('loaderShown')) return 'done'
-      if (window.innerWidth < 768) return 'done'
-    }
-    return 'visible'
-  })
+  const [phase, setPhase] = useState<'visible' | 'fading' | 'done'>('visible')
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    if (phase === 'done') return
+    if (sessionStorage.getItem('loaderShown') || window.innerWidth < 768) {
+      setPhase('done')
+      return
+    }
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
-  }, [phase])
+  }, [])
 
   const handleEnded = () => {
     setPhase('fading')

@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
   { label: 'Les Handicaps', href: '/handicaps' },
-  { label: 'Les Bonnes pratiques', href: '/guide' },
+  { label: 'Les Bonnes pratiques', href: '/bonnes-pratiques' },
   { label: 'Les Ressources', href: '/ressources' },
   { label: 'La Fédération', href: '/la-fede' },
   { label: 'Blog', href: '/blog' },
