@@ -79,6 +79,15 @@ export function WhyEngageBlock({ title, items }: Props) {
         <div className="absolute inset-0 bg-mauve-900" />
       </div>
 
+      {/* Mask — behind card */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/icons/why-bloc-mask.png"
+        alt=""
+        aria-hidden
+        className="absolute z-[5] top-[10%] right-[calc(50%-19.375rem)] w-48 h-auto pointer-events-none"
+      />
+
       {/* Content card */}
       <div className="relative z-10 w-full bg-purple-400 max-w-155 @container max-h-[95vh] min-h-[80vh] sm:min-h-0 sm:aspect-720/846">
         <div className="absolute inset-0 flex flex-col">
@@ -106,6 +115,15 @@ export function WhyEngageBlock({ title, items }: Props) {
 
         </div>
       </div>
+
+      {/* Mask — in front of card */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/icons/why-bloc-mask.png"
+        alt=""
+        aria-hidden
+        className="absolute z-[15] top-[10%] right-[calc(50%-19.375rem)] w-48 h-auto pointer-events-none"
+      />
     </section>
   )
 }
