@@ -54,22 +54,23 @@ export function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 h-24 pointer-events-auto">
         <div
           aria-hidden
-          className="absolute inset-0 backdrop-blur-[6px] bg-mauve-900/10 mask-[linear-gradient(to_bottom,black_85%,transparent)] pointer-events-none"
+          className="absolute inset-0 backdrop-blur-[6px] bg-mauve-900/60 mask-[linear-gradient(to_bottom,black_85%,transparent)] pointer-events-none"
         />
 
         <div className="relative flex items-center justify-between h-full px-8">
-          {/* Desktop: logo + links grouped left, justify-between */}
-          <div className="hidden md:flex items-center justify-between gap-12">
-            <Link href="/" className="shrink-0" onClick={close}>
-              <Image
-                src="/icons/logo.png"
-                alt="Festiv'all"
-                width={160}
-                height={56}
-                className="h-14 w-auto object-contain"
-              />
-            </Link>
+          {/* Logo — seul à gauche */}
+          <Link href="/" className="shrink-0" onClick={close}>
+            <Image
+              src="/icons/logo.png"
+              alt="Festiv'all"
+              width={160}
+              height={56}
+              className="h-14 w-auto object-contain"
+            />
+          </Link>
 
+          {/* Desktop : liens + CTA groupés à droite */}
+          <div className="hidden md:flex items-center gap-8">
             <ul className="flex items-center gap-8">
               {NAV_LINKS.map((link) => (
                 <li key={link.href} className="relative group">
@@ -100,44 +101,27 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Mobile logo */}
-          <Link href="/" className="md:hidden shrink-0" onClick={close}>
-            <Image
-              src="/icons/logo.png"
-              alt="Festiv'all"
-              width={160}
-              height={56}
-              className="h-14 w-auto object-contain"
-            />
-          </Link>
-
-          {/* Right side */}
-          <div className="flex items-center gap-4">
-            {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-5 shrink-0">
-              <span className="text-purple-400 text-lg leading-none select-none" aria-hidden>|</span>
-              <Link
-                href={CTA.href}
-                className="border-4 border-purple-400 rounded-full px-5 py-2 text-purple-400 uppercase text-xs font-bold tracking-widest whitespace-nowrap"
-              >
-                {CTA.label}
-              </Link>
-            </div>
-
-            {/* Mobile burger / close */}
-            <button
-              type="button"
-              className="md:hidden flex items-center justify-center w-11 h-11 text-purple-400"
-              onClick={() => setIsOpen((v) => !v)}
-              aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
+            <span className="text-purple-400 text-lg leading-none select-none" aria-hidden>|</span>
+            <Link
+              href={CTA.href}
+              className="border-4 border-purple-400 rounded-full px-5 py-2 text-purple-400 uppercase text-xs font-bold tracking-widest whitespace-nowrap"
             >
-              {isOpen ? <CloseIcon /> : <BurgerIcon />}
-            </button>
+              {CTA.label}
+            </Link>
           </div>
+
+          {/* Mobile burger / close */}
+          <button
+            type="button"
+            className="md:hidden flex items-center justify-center w-11 h-11 text-purple-400"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+          >
+            {isOpen ? <CloseIcon /> : <BurgerIcon />}
+          </button>
         </div>
       </nav>
 

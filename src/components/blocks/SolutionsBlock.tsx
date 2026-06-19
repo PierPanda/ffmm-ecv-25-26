@@ -1,7 +1,11 @@
 'use client'
 
-import { useId } from 'react'
+import { useId, useRef, useEffect } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/components/ui/Button'
+
+gsap.registerPlugin(ScrollTrigger)
 
 type Media = { url?: string | null } | number | null
 
@@ -25,6 +29,38 @@ function mediaUrl(media: Media | undefined): string | null {
 
 export function SolutionsBlock({ sectionTitle, items }: Props) {
   const filterId = useId()
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+  const imgRefs = useRef<(HTMLImageElement | null)[]>([])
+
+  useEffect(() => {
+    const ctxs = items.map((item, i) => {
+      const trigger = itemRefs.current[i]
+      const img = imgRefs.current[i]
+      const bgUrl = mediaUrl(item.backgroundImage)
+      if (!trigger || !img || !bgUrl) return null
+
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          img,
+          { yPercent: -15 },
+          {
+            yPercent: 15,
+            ease: 'none',
+            scrollTrigger: {
+              trigger,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        )
+      }, trigger)
+
+      return ctx
+    })
+
+    return () => { ctxs.forEach(ctx => ctx?.revert()) }
+  }, [items])
 
   return (
     <section className="relative w-full p-8 flex flex-col gap-8 bg-mauve-900">
@@ -43,14 +79,20 @@ export function SolutionsBlock({ sectionTitle, items }: Props) {
       {items.map((item, i) => {
         const bgUrl = mediaUrl(item.backgroundImage)
         return (
-          <div key={item.id ?? i} className="relative overflow-hidden min-h-[65vh] md:min-h-[80vh] flex items-center">
+          <div
+            key={item.id ?? i}
+            ref={el => { itemRefs.current[i] = el }}
+            className="relative overflow-hidden min-h-[65vh] md:min-h-[80vh] flex items-center"
+          >
             {bgUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
+                ref={el => { imgRefs.current[i] = el }}
                 src={bgUrl}
                 alt=""
                 aria-hidden
-                className="absolute inset-0 w-full h-full object-cover object-top opacity-50"
+                className="absolute inset-x-0 w-full object-cover object-top opacity-50 will-change-transform"
+                style={{ height: '150%', top: '-25%' }}
               />
             )}
             <div className="absolute inset-0 bg-mauve-900/65" />
