@@ -17,6 +17,7 @@ type BlockData = Record<string, unknown> & { blockType: string; id?: string }
 
 export type BlockList = BlockData[]
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const blockMap: Record<string, React.ComponentType<any>> = {
   heroBlock: HeroBlock,
   statsBlock: StatsBlock,

@@ -4,12 +4,14 @@ const schema = z.object({
   NEXT_PUBLIC_SERVER_URL: z.string().url().default('http://localhost:3000'),
   NEXT_PUBLIC_UNICORN_SDK_URL: z.string().url(),
   NEXT_PUBLIC_UNICORN_PROJECT_ID: z.string().min(1),
+  NEXT_PUBLIC_UNICORN_FOOTER_PROJECT_ID: z.string().min(1).optional(),
 });
 
 const parsed = schema.safeParse({
   NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
   NEXT_PUBLIC_UNICORN_SDK_URL: process.env.NEXT_PUBLIC_UNICORN_SDK_URL,
   NEXT_PUBLIC_UNICORN_PROJECT_ID: process.env.NEXT_PUBLIC_UNICORN_PROJECT_ID,
+  NEXT_PUBLIC_UNICORN_FOOTER_PROJECT_ID: process.env.NEXT_PUBLIC_UNICORN_FOOTER_PROJECT_ID,
 });
 
 if (!parsed.success) {
@@ -19,3 +21,4 @@ if (!parsed.success) {
 export const serverUrl = parsed.data.NEXT_PUBLIC_SERVER_URL;
 export const unicornSdkUrl = parsed.data.NEXT_PUBLIC_UNICORN_SDK_URL;
 export const unicornProjectId = parsed.data.NEXT_PUBLIC_UNICORN_PROJECT_ID;
+export const unicornFooterProjectId = parsed.data.NEXT_PUBLIC_UNICORN_FOOTER_PROJECT_ID;

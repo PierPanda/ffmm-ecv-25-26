@@ -6,7 +6,7 @@ const generateSlug: CollectionBeforeChangeHook = ({ data, operation }) => {
     data.slug = (data.title as string)
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[̀-ͯ]/g, '')
+      .replace(/[\u0300-\u036F]/g, '')
       .replace(/[^a-z0-9\s-]/g, '')
       .trim()
       .replace(/\s+/g, '-')

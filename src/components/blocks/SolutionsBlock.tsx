@@ -27,7 +27,7 @@ export function SolutionsBlock({ sectionTitle, items }: Props) {
   const filterId = useId()
 
   return (
-    <section className="w-full p-8 flex flex-col gap-8 bg-mauve-900">
+    <section className="relative w-full p-8 flex flex-col gap-8 bg-mauve-900">
       <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
         <defs>
           <filter id={filterId}>
@@ -36,14 +36,14 @@ export function SolutionsBlock({ sectionTitle, items }: Props) {
           </filter>
         </defs>
       </svg>
-      <p className="px-8 py-6 font-tanker text-purple-400 uppercase text-5xl leading-none">
+      <h2 className="px-8 py-6 font-tanker text-purple-400 uppercase text-5xl leading-none">
         {sectionTitle}
-      </p>
+      </h2>
 
       {items.map((item, i) => {
         const bgUrl = mediaUrl(item.backgroundImage)
         return (
-          <div key={item.id ?? i} className="relative overflow-hidden min-h-[95vh] md:min-h-[80vh] flex items-center">
+          <div key={item.id ?? i} className="relative overflow-hidden min-h-[65vh] md:min-h-[80vh] flex items-center">
             {bgUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -55,16 +55,16 @@ export function SolutionsBlock({ sectionTitle, items }: Props) {
             )}
             <div className="absolute inset-0 bg-mauve-900/65" />
 
-            <div className="relative z-10 flex justify-between items-center gap-8 w-full px-8 md:px-16 py-12">
-              <div className="w-[35%] shrink-0">
-                <h2 className="font-tanker text-white uppercase leading-none text-8xl" style={{ filter: `url(#${filterId})` }}>
+            <div className="relative z-10 flex flex-col gap-8 w-full px-8 md:px-16 py-12 md:flex-row md:justify-between md:items-center">
+              <div className="md:w-[35%] md:shrink-0">
+                <h3 className="font-tanker text-white uppercase leading-none text-7xl md:text-8xl" style={{ filter: `url(#${filterId})` }}>
                   {item.title}
-                </h2>
+                </h3>
               </div>
 
-              <div className="w-[25%] shrink-0 flex flex-col gap-6">
+              <div className="md:w-[25%] md:shrink-0 flex flex-col gap-6">
                 {item.description && (
-                  <p className="text-white/80 text-base leading-relaxed">{item.description}</p>
+                  <p className="text-white/80 text-xl md:text-lg leading-relaxed">{item.description}</p>
                 )}
                 {item.ctaLabel && item.ctaHref && (
                   <Button

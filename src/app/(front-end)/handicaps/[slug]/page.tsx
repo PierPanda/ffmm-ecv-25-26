@@ -2,7 +2,7 @@ export const revalidate = 3600
 
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
+import { ServerBlockRenderer as BlockRenderer, type BlockList } from '@/components/ServerBlockRenderer'
 import { notFound } from 'next/navigation'
 import { HANDICAP_SLUGS } from '@/collections/HandicapPages'
 

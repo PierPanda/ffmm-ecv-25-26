@@ -40,13 +40,27 @@ export const SiteSettings: GlobalConfig = {
       type: 'group',
       label: 'Pied de page',
       fields: [
-        { name: 'legalText', type: 'text' },
+        { name: 'legalText', type: 'text', label: 'Texte copyright', defaultValue: '©Festiv\'all 2026, Tous droits réservés' },
         {
           name: 'links',
           type: 'array',
+          label: 'Liens légaux',
           fields: [
             { name: 'label', type: 'text', required: true },
             { name: 'href', type: 'text', required: true },
+          ],
+        },
+        { name: 'contactLinkLabel', type: 'text', label: 'Libellé lien contact', defaultValue: 'Nous contacter' },
+        { name: 'contactLinkHref', type: 'text', label: 'Lien contact', defaultValue: '/contact' },
+        { name: 'contactEmail', type: 'text', label: 'Email de contact' },
+        { name: 'contactPhone', type: 'text', label: 'Téléphone' },
+        {
+          name: 'socialLinks',
+          type: 'array',
+          label: 'Réseaux sociaux',
+          fields: [
+            { name: 'label', type: 'text', required: true, label: 'Nom du réseau' },
+            { name: 'href', type: 'text', required: true, label: 'URL' },
           ],
         },
       ],

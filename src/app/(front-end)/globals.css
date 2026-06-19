@@ -17,6 +17,12 @@
   --color-sand-100: #f7f2e8;
   --color-amber-400: #ffb000;
   --color-purple-400: #cb9cf2;
+  --animate-marquee-scroll: marquee-scroll 25s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (prefers-color-scheme: dark) {

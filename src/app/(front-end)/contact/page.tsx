@@ -2,7 +2,7 @@ export const revalidate = 3600
 
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { BlockRenderer, type BlockList } from '@/components/BlockRenderer'
+import { ServerBlockRenderer as BlockRenderer, type BlockList } from '@/components/ServerBlockRenderer'
 
 export default async function ContactPage() {
   const payload = await getPayload({ config })

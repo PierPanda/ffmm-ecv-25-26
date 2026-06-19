@@ -22,10 +22,11 @@ declare global {
   }
 }
 
-export default function ShaderBackground() {
+export default function ShaderBackground(): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let isMounted = true;
     let scene: UnicornScene | undefined;
     let forwardCleanup: (() => void) | undefined;
     let injectedScript: HTMLScriptElement | undefined;
@@ -35,14 +36,18 @@ export default function ShaderBackground() {
       if (!container || !window.UnicornStudio) return;
 
       try {
-        scene = await window.UnicornStudio.addScene({
+        const isMobile = window.innerWidth < 768;
+        const s = await window.UnicornStudio.addScene({
           elementId: ELEMENT_ID,
           projectId: unicornProjectId,
-          scale: 1,
+          scale: isMobile ? 0.7 : 1,
           dpi: 1.5,
           fps: 60,
           fixed: true,
         });
+
+        if (!isMounted) { s.destroy(); return; }
+        scene = s;
 
         const forward = (e: MouseEvent) =>
           container.dispatchEvent(
@@ -81,14 +86,20 @@ export default function ShaderBackground() {
     if (window.UnicornStudio) {
       boot();
     } else {
-      const script = document.createElement("script");
-      script.src = unicornSdkUrl;
-      script.onload = boot;
-      document.head.appendChild(script);
-      injectedScript = script;
+      const existing = document.querySelector<HTMLScriptElement>(`script[src="${unicornSdkUrl}"]`);
+      if (existing) {
+        existing.addEventListener('load', boot, { once: true });
+      } else {
+        const script = document.createElement("script");
+        script.src = unicornSdkUrl;
+        script.addEventListener('load', boot, { once: true });
+        document.head.appendChild(script);
+        injectedScript = script;
+      }
     }
 
     return () => {
+      isMounted = false;
       forwardCleanup?.();
       scene?.destroy();
       injectedScript?.remove();

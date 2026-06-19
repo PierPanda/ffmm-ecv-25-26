@@ -1,3 +1,11 @@
+'use client'
+
+import { useRef, useEffect } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 type Media = { url?: string | null; alt?: string | null } | number | null
 
 type Props = {
@@ -30,7 +38,32 @@ export function DualCardSectionBlock({
   const bgUrl = mediaUrl(backgroundImage)
   const logoUrl = mediaUrl(logo)
 
-  // Contenu de la carte droite (section 2), partagé entre les rendus <a> et <div>
+  const sectionRef = useRef<HTMLElement>(null)
+  const bgRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (!bgRef.current || !sectionRef.current || !bgUrl) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bgRef.current,
+        { yPercent: -15 },
+        {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        },
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [bgUrl])
+
   const sectionTwo = (
     <>
       <span
@@ -44,7 +77,7 @@ export function DualCardSectionBlock({
           />
         </svg>
       </span>
-      <span className="whitespace-pre-line font-tanker text-[clamp(2.25rem,3.8vw,3.625rem)] font-normal uppercase leading-[0.95] text-purple-400">
+      <span className="whitespace-pre-line font-tanker text-5xl md:text-[clamp(2.25rem,3.8vw,3.625rem)] font-normal uppercase leading-[0.95] text-purple-400">
         {title}
       </span>
     </>
@@ -52,16 +85,26 @@ export function DualCardSectionBlock({
 
   return (
     <section
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-mauve-900 bg-cover bg-center px-6 py-6"
-      style={bgUrl ? { backgroundImage: `url(${bgUrl})` } : undefined}
+      ref={sectionRef}
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-mauve-900 px-6 py-6"
     >
-      {/* Voile violet 50% par-dessus l'image de fond (#CB9CF2 / purple-400) */}
-      {bgUrl && <div aria-hidden="true" className="absolute inset-0 bg-purple-400/50" />}
+      {bgUrl && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            ref={bgRef}
+            src={bgUrl}
+            alt=""
+            aria-hidden
+            className="absolute inset-x-0 w-full object-cover object-center will-change-transform"
+            style={{ height: '150%', top: '-25%' }}
+          />
+          <div aria-hidden className="absolute inset-0 bg-purple-400/50" />
+        </>
+      )}
 
-      {/* Contenu centré : 1 colonne sur mobile, 2 colonnes dès md, gap 24px */}
       <div className="relative z-10 grid w-full max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Section 1 (carte gauche) : logo OU titre + description */}
-        <div className="flex aspect-[6/7] flex-col justify-between bg-sand-100 p-6 text-mauve-900">
+        <div className="flex aspect-6/7 flex-col justify-between bg-sand-100 p-6 text-mauve-900">
           {logoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -71,29 +114,28 @@ export function DualCardSectionBlock({
             />
           ) : (
             leftTitle && (
-              <span className="whitespace-pre-line font-tanker text-[clamp(1.5rem,2.4vw,2.25rem)] font-normal uppercase leading-[0.95] text-mauve-900">
+              <span className="whitespace-pre-line font-tanker text-3xl md:text-[clamp(1.5rem,2.4vw,2.25rem)] font-normal uppercase leading-[0.95] text-mauve-900">
                 {leftTitle}
               </span>
             )
           )}
           {description && (
-            <div className="flex w-full flex-col gap-4 font-body text-lg leading-[1.1] tracking-[-0.02em]">
+            <div className="flex w-full flex-col gap-4 font-body text-xl md:text-lg leading-[1.1] tracking-[-0.02em]">
               {description
                 .split('\n')
                 .filter((line) => line.trim() !== '')
                 .map((line, i) => (
-                  <p key={i}>{line}</p>
+                  <p key={`${i}-${line.slice(0, 20)}`}>{line}</p>
                 ))}
             </div>
           )}
         </div>
 
-        {/* Section 2 (carte droite) : titre + CTA cliquable */}
         {ctaHref ? (
           <a
             href={ctaHref}
             aria-label={ctaLabel || title}
-            className="group relative flex aspect-[6/7] flex-col justify-end bg-mauve-900 p-6"
+            className="group relative flex aspect-6/7 flex-col justify-end bg-mauve-900 p-6"
           >
             {sectionTwo}
           </a>
