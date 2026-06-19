@@ -8,9 +8,19 @@ type Props = {
   ctaHref?: string | null
 }
 
-export function HeroBlock({ title, subtitle, ctaLabel, ctaHref }: Props) {
+export function HeroBlock({ title, subtitle, image, ctaLabel, ctaHref }: Props) {
   return (
     <section className="relative w-full h-screen overflow-hidden">
+      {image?.url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={image.url}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+
       <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
         <defs>
           <filter id={FILTER_ID}>

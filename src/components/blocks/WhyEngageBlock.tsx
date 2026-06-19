@@ -21,10 +21,14 @@ export function WhyEngageBlock({ title, items }: Props) {
   const filterId = useId()
   const sectionRef = useRef<HTMLElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
+  const maskBehindRef = useRef<HTMLImageElement>(null)
+  const maskFrontRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     const section = sectionRef.current
     const overlay = overlayRef.current
+    const maskBehind = maskBehindRef.current
+    const maskFront = maskFrontRef.current
     if (!section || !overlay) return
 
     const ctx = gsap.context(() => {
@@ -42,6 +46,40 @@ export function WhyEngageBlock({ title, items }: Props) {
           },
         },
       )
+
+      if (maskBehind) {
+        gsap.fromTo(
+          maskBehind,
+          { yPercent: -60 },
+          {
+            yPercent: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 90%',
+              end: 'top 20%',
+              scrub: true,
+            },
+          },
+        )
+      }
+
+      if (maskFront) {
+        gsap.fromTo(
+          maskFront,
+          { yPercent: -80 },
+          {
+            yPercent: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 90%',
+              end: 'top 20%',
+              scrub: true,
+            },
+          },
+        )
+      }
     }, section)
 
     return () => ctx.revert()
@@ -50,7 +88,7 @@ export function WhyEngageBlock({ title, items }: Props) {
   return (
     <section
       ref={sectionRef}
-      className="relative w-screen overflow-hidden flex items-center justify-center px-4 sm:px-0 h-dvh"
+      className="relative w-screen overflow-x-hidden flex items-center justify-center px-4 sm:px-0 h-[130dvh]"
     >
       <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
         <defs>
@@ -79,19 +117,10 @@ export function WhyEngageBlock({ title, items }: Props) {
         <div className="absolute inset-0 bg-mauve-900" />
       </div>
 
-      {/* Mask — behind card */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/icons/why-bloc-mask.png"
-        alt=""
-        aria-hidden
-        className="absolute z-[5] top-[10%] right-[calc(50%-19.375rem)] w-48 h-auto pointer-events-none"
-      />
-
-      {/* Content card */}
+      {/* Content card — contains both masks so they live in the card stacking context,
+           isolated from the section overlay animation */}
       <div className="relative z-10 w-full bg-purple-400 max-w-155 @container max-h-[95vh] min-h-[80vh] sm:min-h-0 sm:aspect-720/846">
         <div className="absolute inset-0 flex flex-col">
-
           <div className="h-[35%] sm:h-[60%] flex items-start p-6 @xl:p-10" style={{ filter: `url(#${filterId})` }}>
             <h2 className="font-tanker text-mauve-900 uppercase leading-none tracking-tight text-4xl @xs:text-5xl @sm:text-6xl @lg:text-8xl mb-4 @xl:pr-9">
               {title}
@@ -112,18 +141,9 @@ export function WhyEngageBlock({ title, items }: Props) {
               </div>
             ))}
           </div>
-
         </div>
-      </div>
 
-      {/* Mask — in front of card */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/icons/why-bloc-mask.png"
-        alt=""
-        aria-hidden
-        className="absolute z-[15] top-[10%] right-[calc(50%-19.375rem)] w-48 h-auto pointer-events-none"
-      />
+      </div>
     </section>
   )
 }
