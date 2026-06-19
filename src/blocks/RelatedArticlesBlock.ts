@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const RelatedArticlesBlock: Block = {
   slug: 'relatedArticlesBlock',
   labels: { singular: 'Articles connexes', plural: 'Articles connexes' },
+  admin: { images: { thumbnail: '/block-previews/related-articles.svg' } },
   fields: [
     { name: 'title', type: 'text' },
     {

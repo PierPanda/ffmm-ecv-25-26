@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <rect width="480" height="320" fill="#150516"/>
+  <!-- title -->
+  <rect x="32" y="28" width="180" height="20" rx="3" fill="#f7f2e8" opacity="0.8"/>
+  <rect x="352" y="30" width="96" height="16" rx="8" fill="#cb9cf2" opacity="0.7"/>
+  <!-- 2 article cards -->
+  <rect x="32" y="72" width="196" height="200" rx="4" fill="#f7f2e8" opacity="0.05"/>
+  <rect x="32" y="72" width="196" height="104" rx="4" fill="#f7f2e8" opacity="0.1"/>
+  <rect x="44" y="188" width="80" height="8" rx="2" fill="#cb9cf2" opacity="0.6"/>
+  <rect x="44" y="202" width="160" height="12" rx="2" fill="#f7f2e8" opacity="0.55"/>
+  <rect x="44" y="220" width="140" height="8" rx="2" fill="#f7f2e8" opacity="0.25"/>
+  <rect x="44" y="234" width="120" height="8" rx="2" fill="#f7f2e8" opacity="0.18"/>
+
+  <rect x="252" y="72" width="196" height="200" rx="4" fill="#f7f2e8" opacity="0.05"/>
+  <rect x="252" y="72" width="196" height="104" rx="4" fill="#f7f2e8" opacity="0.1"/>
+  <rect x="264" y="188" width="80" height="8" rx="2" fill="#cb9cf2" opacity="0.6"/>
+  <rect x="264" y="202" width="160" height="12" rx="2" fill="#f7f2e8" opacity="0.55"/>
+  <rect x="264" y="220" width="140" height="8" rx="2" fill="#f7f2e8" opacity="0.25"/>
+  <rect x="264" y="234" width="120" height="8" rx="2" fill="#f7f2e8" opacity="0.18"/>
+</svg>

@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const HeroBlock: Block = {
   slug: 'heroBlock',
   labels: { singular: 'Hero', plural: 'Heros' },
+  admin: { images: { thumbnail: '/block-previews/hero.svg' } },
   fields: [
     { name: 'title', type: 'text', required: true },
     { name: 'subtitle', type: 'text' },

@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const PacksBlock: Block = {
   slug: 'packsBlock',
   labels: { singular: 'Packs', plural: 'Packs' },
+  admin: { images: { thumbnail: '/block-previews/packs.svg' } },
   fields: [
     {
       name: 'title',

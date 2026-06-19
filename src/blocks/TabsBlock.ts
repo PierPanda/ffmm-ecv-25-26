@@ -7,6 +7,7 @@ import { DownloadBlock } from './DownloadBlock'
 export const TabsBlock: Block = {
   slug: 'tabsBlock',
   labels: { singular: 'Onglets', plural: 'Onglets' },
+  admin: { images: { thumbnail: '/block-previews/tabs.svg' } },
   fields: [
     {
       name: 'tabs',

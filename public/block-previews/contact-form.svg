@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <rect width="480" height="320" fill="#150516"/>
+  <!-- title -->
+  <rect x="120" y="32" width="240" height="24" rx="3" fill="#f7f2e8" opacity="0.8"/>
+  <!-- fields -->
+  <rect x="80" y="80" width="148" height="36" rx="4" fill="none" stroke="#f7f2e8" stroke-width="1.5" opacity="0.3"/>
+  <rect x="252" y="80" width="148" height="36" rx="4" fill="none" stroke="#f7f2e8" stroke-width="1.5" opacity="0.3"/>
+  <rect x="80" y="132" width="320" height="36" rx="4" fill="none" stroke="#f7f2e8" stroke-width="1.5" opacity="0.3"/>
+  <rect x="80" y="184" width="320" height="64" rx="4" fill="none" stroke="#f7f2e8" stroke-width="1.5" opacity="0.3"/>
+  <!-- labels inside -->
+  <rect x="96" y="95" width="60" height="8" rx="2" fill="#f7f2e8" opacity="0.25"/>
+  <rect x="268" y="95" width="50" height="8" rx="2" fill="#f7f2e8" opacity="0.25"/>
+  <rect x="96" y="147" width="80" height="8" rx="2" fill="#f7f2e8" opacity="0.25"/>
+  <rect x="96" y="200" width="100" height="8" rx="2" fill="#f7f2e8" opacity="0.25"/>
+  <!-- submit -->
+  <rect x="180" y="268" width="120" height="36" rx="18" fill="#ffb000"/>
+  <rect x="210" y="280" width="60" height="10" rx="3" fill="#150516" opacity="0.6"/>
+</svg>

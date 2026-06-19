@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const DualCardSectionBlock: Block = {
   slug: 'dualCardSectionBlock',
   labels: { singular: 'Section deux cartes', plural: 'Sections deux cartes' },
+  admin: { images: { thumbnail: '/block-previews/dual-card.svg' } },
   fields: [
     // Fond
     {

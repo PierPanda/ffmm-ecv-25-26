@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const FedeBannerBlock: Block = {
   slug: 'fedeBannerBlock',
   labels: { singular: 'Bannière Fédé', plural: 'Bannières Fédé' },
+  admin: { images: { thumbnail: '/block-previews/fede-banner.svg' } },
   fields: [
     { name: 'title', type: 'text', required: true },
     { name: 'text', type: 'textarea' },

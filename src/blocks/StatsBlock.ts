@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const StatsBlock: Block = {
   slug: 'statsBlock',
   labels: { singular: 'Chiffres clés', plural: 'Chiffres clés' },
+  admin: { images: { thumbnail: '/block-previews/stats.svg' } },
   fields: [
     { name: 'title', type: 'text' },
     {

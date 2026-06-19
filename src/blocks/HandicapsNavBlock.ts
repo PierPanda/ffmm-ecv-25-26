@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const HandicapsNavBlock: Block = {
   slug: 'handicapsNavBlock',
   labels: { singular: 'Navigation handicaps', plural: 'Navigation handicaps' },
+  admin: { images: { thumbnail: '/block-previews/handicaps-nav.svg' } },
   fields: [
     { name: 'title', type: 'text' },
     {

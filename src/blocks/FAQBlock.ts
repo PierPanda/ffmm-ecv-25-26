@@ -3,6 +3,7 @@ import type { Block } from 'payload'
 export const FAQBlock: Block = {
   slug: 'faqBlock',
   labels: { singular: 'FAQ', plural: 'FAQs' },
+  admin: { images: { thumbnail: '/block-previews/faq.svg' } },
   fields: [
     { name: 'title', type: 'text' },
     {

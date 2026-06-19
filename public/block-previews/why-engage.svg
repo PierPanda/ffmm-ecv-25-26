@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="480" height="320">
+  <rect width="480" height="320" fill="#150516"/>
+  <!-- marquee band -->
+  <rect x="0" y="128" width="480" height="64" fill="#cb9cf2" opacity="0.08"/>
+  <rect x="16" y="144" width="48" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <rect x="80" y="144" width="48" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <rect x="144" y="144" width="48" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <rect x="208" y="144" width="48" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <rect x="272" y="144" width="48" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <rect x="336" y="144" width="48" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <rect x="400" y="144" width="64" height="32" rx="2" fill="#cb9cf2" opacity="0.2"/>
+  <!-- purple card -->
+  <rect x="128" y="48" width="224" height="224" rx="4" fill="#cb9cf2"/>
+  <!-- title area -->
+  <rect x="148" y="68" width="160" height="26" rx="3" fill="#150516" opacity="0.7"/>
+  <rect x="148" y="100" width="120" height="16" rx="3" fill="#150516" opacity="0.4"/>
+  <!-- divider -->
+  <line x1="148" y1="168" x2="332" y2="168" stroke="#150516" stroke-width="1" opacity="0.3"/>
+  <!-- items -->
+  <rect x="148" y="178" width="80" height="8" rx="2" fill="#150516" opacity="0.5"/>
+  <rect x="148" y="192" width="140" height="6" rx="2" fill="#150516" opacity="0.3"/>
+  <rect x="148" y="208" width="80" height="8" rx="2" fill="#150516" opacity="0.5"/>
+  <rect x="148" y="222" width="130" height="6" rx="2" fill="#150516" opacity="0.3"/>
+  <rect x="148" y="238" width="80" height="8" rx="2" fill="#150516" opacity="0.5"/>
+  <rect x="148" y="252" width="120" height="6" rx="2" fill="#150516" opacity="0.3"/>
+</svg>
