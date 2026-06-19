@@ -32,9 +32,10 @@ function ArticleCard({ article }: { article: Article }) {
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group flex-[0_0_85%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 flex flex-col"
+      className="group flex-[0_0_85%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 flex flex-col pr-6"
     >
-      <div className="relative overflow-hidden rounded-sm bg-mauve-900/30 mb-4" style={{ paddingBottom: '75%' }}>
+      <div className="flex-1 flex flex-col overflow-hidden rounded-xs">
+      <div className="relative overflow-hidden bg-mauve-900/30" style={{ paddingBottom: '75%' }}>
         {article.coverImage?.url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -47,24 +48,27 @@ function ArticleCard({ article }: { article: Article }) {
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2 mb-3">
-        {article.tag && (
-          <span className="text-purple-400 uppercase text-[11px] font-bold tracking-widest truncate">
-            {article.tag}
-          </span>
-        )}
-        {date && (
-          <span className="text-white/40 text-[11px] shrink-0">{date}</span>
+      <div className="flex-1 flex flex-col bg-white px-5 pb-5 pt-4">
+        <div className="flex items-center justify-between gap-2 mb-3">
+          {article.tag && (
+            <span className="text-mauve-900/70 uppercase text-[11px] font-bold tracking-widest truncate">
+              {article.tag}
+            </span>
+          )}
+          {date && (
+            <span className="text-mauve-900/40 text-[11px] shrink-0">{date}</span>
+          )}
+        </div>
+
+        <h3 className="font-tanker text-mauve-900 uppercase leading-none text-2xl mb-3 group-hover:text-purple-400 transition-colors">
+          {article.title}
+        </h3>
+
+        {article.chapo && (
+          <p className="text-mauve-900/65 text-sm leading-relaxed line-clamp-2">{article.chapo}</p>
         )}
       </div>
-
-      <h3 className="font-tanker text-white uppercase leading-none text-2xl mb-3 group-hover:text-purple-400 transition-colors">
-        {article.title}
-      </h3>
-
-      {article.chapo && (
-        <p className="text-white/60 text-sm leading-relaxed line-clamp-2">{article.chapo}</p>
-      )}
+      </div>
     </Link>
   )
 }
@@ -116,7 +120,7 @@ export function ArticlesSlider({ sectionTitle, articles }: Props) {
       </div>
 
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6">
+        <div className="flex">
           {articles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
