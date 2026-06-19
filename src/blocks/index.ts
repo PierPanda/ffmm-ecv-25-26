@@ -15,6 +15,7 @@ import { PacksBlock } from './PacksBlock'
 import { SolutionsBlock } from './SolutionsBlock'
 import { ArticlesSliderBlock } from './ArticlesSliderBlock'
 import { SixCardsBlock } from './SixCardsBlock'
+import { BonnesPratiquesBlock } from './BonnesPratiquesBlock'
 
 export {
   HeroBlock,
@@ -33,6 +34,7 @@ export {
   SolutionsBlock,
   ArticlesSliderBlock,
   SixCardsBlock,
+  BonnesPratiquesBlock,
 }
 
 export const allBlocks: Block[] = [
@@ -52,4 +54,5 @@ export const allBlocks: Block[] = [
   SolutionsBlock,
   ArticlesSliderBlock,
   SixCardsBlock,
+  BonnesPratiquesBlock,
 ]

@@ -13,6 +13,7 @@ import { DualCardSectionBlock } from './blocks/DualCardSectionBlock'
 import { PacksBlock } from './blocks/PacksBlock'
 import { SolutionsBlock } from './blocks/SolutionsBlock'
 import { SixCardsBlock } from './blocks/SixCardsBlock'
+import { BonnesPratiquesBlock } from './blocks/BonnesPratiquesBlock'
 
 type BlockData = Record<string, unknown> & { blockType: string; id?: string }
 
@@ -35,6 +36,7 @@ const blockMap: Record<string, React.ComponentType<any>> = {
   packsBlock: PacksBlock,
   solutionsBlock: SolutionsBlock,
   sixCardsBlock: SixCardsBlock,
+  bonnesPratiquesBlock: BonnesPratiquesBlock,
 }
 
 type Props = {
