@@ -34,7 +34,7 @@ function CardInner({ card }: { card: Card }) {
   const picUrl = mediaUrl(card.pictogram)
 
   return (
-    <div className="group relative flex flex-col gap-4 bg-purple-400 p-6 h-full min-h-[240px] pb-16">
+    <div className="group relative flex flex-col items-center justify-center gap-4 bg-purple-400 p-6 h-full min-h-[240px] pb-16 text-center">
       {picUrl && (
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-mauve-900 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
